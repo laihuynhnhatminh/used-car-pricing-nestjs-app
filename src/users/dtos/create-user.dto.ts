@@ -3,8 +3,8 @@ import { IsString, IsEmail } from "class-validator";
 export class CreateUserDto {
     @IsString()
     @IsEmail()
-    private email: string;
+    public email: string;
 
     @IsString()
-    private password: string;
+    public password: string;
 }
