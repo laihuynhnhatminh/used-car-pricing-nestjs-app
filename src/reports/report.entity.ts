@@ -3,8 +3,8 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Report {
   @PrimaryGeneratedColumn()
-  private id: number;
+  public id: number;
 
   @Column()
-  private price: number;
+  public price: number;
 }
