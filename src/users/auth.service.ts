@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { BadRequestException, NotFoundException } from "@nestjs/common/exceptions";
 import { scrypt as _scrypt, randomBytes } from "crypto";
 import { promisify } from "util";
+import { User } from "./user.entity";
 import { UsersService } from "./users.service";
 
 const scrypt = promisify(_scrypt);
@@ -10,7 +11,7 @@ const scrypt = promisify(_scrypt);
 export class AuthService {
     constructor(private usersService: UsersService) { }
 
-    public async signup(email: string, password: string) {
+    public async signup(email: string, password: string): Promise<User> {
         const users = await this.usersService.find(email);
         if (users.length > 0) {
             throw new BadRequestException('Email is already in use');
@@ -24,7 +25,7 @@ export class AuthService {
         return user;
     }
 
-    public async signin(email: string, password: string) {
+    public async signin(email: string, password: string): Promise<User> {
         const [user] = await this.usersService.find(email);
         if (!user) {
             throw new NotFoundException();
