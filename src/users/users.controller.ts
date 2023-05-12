@@ -1,4 +1,4 @@
-import { Controller, Post, Body, NotFoundException } from '@nestjs/common';
+import { Controller, Post, Body, NotFoundException, HttpCode } from '@nestjs/common';
 import {
   Delete,
   Get,
@@ -42,6 +42,7 @@ export class UsersController {
   }
 
   @Post('/signin')
+  @HttpCode(200)
   public async signin(
     @Body() body: CreateUserDto,
     @Session() session: any,
