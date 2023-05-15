@@ -1,11 +1,22 @@
 import { Exclude } from 'class-transformer';
 import { Report } from 'src/reports/report.entity';
-import { Entity, Column, PrimaryGeneratedColumn, AfterInsert, AfterUpdate, AfterRemove, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  AfterInsert,
+  AfterUpdate,
+  AfterRemove,
+  OneToMany,
+} from 'typeorm';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
   public id: number;
+
+  @Column({ default: true })
+  public isAdmin: boolean;
 
   @Column()
   public email: string;
