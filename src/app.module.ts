@@ -45,7 +45,7 @@ const entities = [User, Report];
   ],
 })
 export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
+  public configure(consumer: MiddlewareConsumer) {
     consumer.apply(cookieSession({
       keys: ['usedCarPricing']
     })).forRoutes('*');
